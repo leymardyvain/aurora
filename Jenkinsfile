@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Replace with your actual Docker Hub or private registry username/repository
-        REGISTRY_IMAGE = 'your-dockerhub-username/node-app'
+        REGISTRY_IMAGE = 'aurora/node-app'
         IMAGE_TAG      = "${env.BUILD_NUMBER}"
     }
 
