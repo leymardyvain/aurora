@@ -25,6 +25,16 @@ pipeline {
         	//}
     	}
 
+		stage('Prérequis système') {
+    		steps {
+        		sh '''
+            		if ! ldconfig -p | grep -q libatomic; then
+                	sudo apt-get update && sudo apt-get install -y libatomic1
+           			fi
+        		'''
+    		}
+		}
+		
         stage('Installation des dépendances') {
             steps {
                 // Installe les paquets définis dans package.json
