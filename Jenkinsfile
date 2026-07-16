@@ -16,17 +16,23 @@ pipeline {
             }
         }
 
-         stage('Install & Test') {
-              agent {
-                // Executes inside a Node container so you don't need Node installed on the Jenkins agent
-                image 'node:20-alpine'           
-               }
-               steps {
-                // Install clean dependencies and run unit tests
-                sh 'npm ci'
-                sh 'npm test'
-               }
-            }
+       stage('Install & Test') {
+    agent {
+        docker {
+            image 'node:20-alpine'
+            // Mounts the npm cache from the host to speed up subsequent runs
+            args '-v $HOME/.npm:/.npm'
+        }
+    }
+    environment {
+        // Directs npm to use the mounted cache folder
+        npm_config_cache = '/.npm'
+    }
+    steps {
+        sh 'npm ci'
+        sh 'npm test'
+    }
+}
 
         stage('Build Docker Image') {
             steps {
