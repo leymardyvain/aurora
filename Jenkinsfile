@@ -18,6 +18,11 @@ pipeline {
                 cleanWs()
                 checkout scm
             }
+            steps{
+				git branch: 'master',
+					credentialsId: 'GitHub_Aurora',
+					url: 'https://github.com/leymardyvain/aurora.git'
+        		}
         }
 
         stage('Installation des dépendances') {
