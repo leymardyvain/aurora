@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'NodeJs-26' // This name must match the tool name in Jenkins
+    }
+
     environment {
         // Replace with your actual Docker Hub or private registry username/repository
         REGISTRY_IMAGE = 'yleymard/aurora'
