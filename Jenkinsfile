@@ -19,10 +19,7 @@ pipeline {
         stage('Install & Test') {
             agent {
                 // Executes inside a Node container so you don't need Node installed on the Jenkins agent
-                //image 'node:20-alpine'
-                  docker {
-                        image 'node:20-alpine'
-                  }            
+                image 'node:20-alpine'           
             }
             steps {
                 // Install clean dependencies and run unit tests
