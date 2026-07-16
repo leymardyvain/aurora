@@ -16,17 +16,17 @@ pipeline {
             }
         }
 
-        stage('Install & Test') {
-            agent {
+         stage('Install & Test') {
+              agent {
                 // Executes inside a Node container so you don't need Node installed on the Jenkins agent
                 image 'node:20-alpine'           
-            }
-            steps {
+               }
+               steps {
                 // Install clean dependencies and run unit tests
                 sh 'npm ci'
                 sh 'npm test'
+               }
             }
-        }
 
         stage('Build Docker Image') {
             steps {
