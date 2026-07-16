@@ -25,13 +25,14 @@ pipeline {
         	//}
     	}
 		
-        stage('Installation des dépendances') {
-            steps {
-                // Installe les paquets définis dans package.json
-				// withEnv(["/usr/share/nodejs/"])
-                sh 'npm install'
-            }
-        }
+stage('Installation des dépendances') {
+    agent {
+        docker { image 'node:20-bullseye' }
+    }
+    steps {
+        sh 'npm ci'
+    }
+}
         
         stage('Build Docker Image') {
             steps {
