@@ -28,7 +28,7 @@ pipeline {
         stage('Installation des dépendances') {
             steps {
                 // Installe les paquets définis dans package.json
-				withEnv(["/usr/share/nodejs/"])
+				// withEnv(["/usr/share/nodejs/"])
                 sh 'npm install'
             }
         }
