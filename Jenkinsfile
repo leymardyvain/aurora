@@ -13,11 +13,11 @@ pipeline {
 
     stages {
         stage('Checkout') {
-            //steps {
+            steps {
                 // Pulls code from the git repository automatically
-               // cleanWs()
-               // checkout scm
-            // }
+                cleanWs()
+                checkout scm
+            }
             //steps{
 			//	git branch: 'master',
 			//		credentialsId: 'GitHub_Aurora',
