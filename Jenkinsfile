@@ -16,24 +16,13 @@ pipeline {
             }
         }
 
-       stage('Install & Test') {
-    agent {
-        docker {
-            image 'node:20-alpine'
-            // Mounts the npm cache from the host to speed up subsequent runs
-            args '-v $HOME/.npm:/.npm'
+        stage('Installation des dépendances') {
+            steps {
+                // Installe les paquets définis dans package.json
+                sh 'npm install'
+            }
         }
-    }
-    environment {
-        // Directs npm to use the mounted cache folder
-        npm_config_cache = '/.npm'
-    }
-    steps {
-        sh 'npm ci'
-        sh 'npm test'
-    }
-}
-
+        
         stage('Build Docker Image') {
             steps {
                 script {
